@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout with Modal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .block {
+      background-color: #fff;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .close-btn {
+      cursor: pointer;
+      font-size: 20px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="block">
+      <h2>Title 1</h2>
+      <img src="image1.jpg" alt="Image 1">
+      <p>Description 1</p>
+      <button onclick="openModal('Modal 1', 'Modal description 1')">Open Modal</button>
+    </div>
+
+    <div class="block">
+      <h2>Title 2</h2>
+      <img src="image2.jpg" alt="Image 2">
+      <p>Description 2</p>
+      <button onclick="openModal('Modal 2', 'Modal description 2')">Open Modal</button>
+    </div>
+
+    <div class="block">
+      <h2>Title 3</h2>
+      <img src="image3.jpg" alt="Image 3">
+      <p>Description 3</p>
+      <button onclick="openModal('Modal 3', 'Modal description 3')">Open Modal</button>
+    </div>
+  </div>
+
+  <div class="modal" id="myModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    function openModal(title, description) {
+      $('#modalTitle').text(title);
+      $('#modalDescription').text(description);
+      $('.modal').fadeIn();
+    }
+
+    function closeModal() {
+      $('.modal').fadeOut();
+    }
+  </script>
+
+</body>
+</html>

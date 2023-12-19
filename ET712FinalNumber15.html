@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Add your CSS styles here */
+    #seats-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .seat {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      background-color: #3498db;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <label for="guestNumber">Enter the number of people (1-10): </label>
+    <input type="number" id="guestNumber" min="1" max="10">
+    <button onclick="submitNumber()">Submit</button>
+  </div>
+
+  <div id="seats-container"></div>
+
+  <script>
+    function submitNumber() {
+      const guestNumberInput = document.getElementById('guestNumber');
+      const seatsContainer = document.getElementById('seats-container');
+
+      const guestNumber = parseInt(guestNumberInput.value, 10);
+      if (isNaN(guestNumber) || guestNumber < 1 || guestNumber > 10) {
+        alert('Please enter a number between 1 and 10.');
+        return;
+      }
+
+      seatsContainer.innerHTML = '';
+
+      for (let i = 1; i <= guestNumber; i++) {
+        const seatElement = document.createElement('div');
+        seatElement.className = 'seat';
+        seatElement.textContent = `Seat ${i}`;
+        seatsContainer.appendChild(seatElement);
+      }
+    }
+  </script>
+
+</body>
+</html>

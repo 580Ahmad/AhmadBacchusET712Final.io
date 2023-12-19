@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #f2f2f2;
+    }
+
+    .cart-container {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 50px;
+      text-align: center;
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #order-summary {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cart-container">
+    <label for="quantity">Quantity:</label>
+    <button onclick="decreaseQuantity()">-</button>
+    <input type="number" id="quantity" value="1" min="1" max="10">
+    <button onclick="increaseQuantity()">+</button>
+    <button onclick="addToCart()">Add to Cart</button>
+
+    <div id="order-summary"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    function increaseQuantity() {
+      const quantityInput = $('#quantity');
+      const currentQuantity = parseInt(quantityInput.val(), 10);
+      if (currentQuantity < 10) {
+        quantityInput.val(currentQuantity + 1);
+      }
+    }
+
+    function decreaseQuantity() {
+      const quantityInput = $('#quantity');
+      const currentQuantity = parseInt(quantityInput.val(), 10);
+      if (currentQuantity > 1) {
+        quantityInput.val(currentQuantity - 1);
+      }
+    }
+
+    function addToCart() {
+      const quantity = parseInt($('#quantity').val(), 10);
+
+      if (isNaN(quantity) || quantity < 1 || quantity > 10) {
+        alert('Please enter a valid quantity between 1 and 10.');
+        return;
+      }
+
+      const orderSummary = `Order Summary: ${quantity} item(s) added to the cart.`;
+      $('#order-summary').text(orderSummary);
+    }
+  </script>
+
+</body>
+</html>
